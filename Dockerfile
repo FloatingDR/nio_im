@@ -4,5 +4,5 @@ COPY ./ /code
 RUN mvn package -Dmaven.test.skip=true
 
 FROM java:8
-COPY --from=bd /code/tatget/*.jar /app.jar
+COPY --from=bd /code/target/*.jar /app.jar
 CMD java -jar app.jar
