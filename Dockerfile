@@ -1,4 +1,8 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ADD nio_im.war nio_im.war
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-war","/nio_im.war"]
+FROM maven:3
+WORKDIR /code
+COPY ./ /code
+RUN mvn package -Dmaven.test.skip=true
+
+FROM java:8
+COPY --from=bd /code/tatget/*.jar /app.jar
+CMD java -jar app.jar
