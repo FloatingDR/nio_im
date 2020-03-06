@@ -1,0 +1,67 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://180.76.134.142:3306/nio_im?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 初始化大小，最小，最大
+    initialSize: 4
+    minIdle: 4
+    maxActive: 8
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  redis:
+    host: 180.76.134.142
+    password:
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 10
+        max-wait: 100000
+    timeout: 5000
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+swagger:
+  package_url: com.taylor.im          #扫描包路径
+  title: NIO_IM Swagger2 接口描述
+  author: taylor
+  website: https://github.com/FloatingDR
+  email: 3520745329@qq.com
+  version: 1.0.0
+  description: Copyright © 1998 - 2020 taylor. 版权所有
+
+netty:
+  auto_start: true        #  netty是否随服务自动启动，程序控制
+  port: 8081              #  netty默认监听端口
+  reader_idle: 7          #  客户端读空闲 7s
+  writer_idle: 7          #  客户端写空闲 7s
+  all_idle: 10            #  客户端读写空闲 10s
+  open_heart: false        #  是否开启心跳检测机制，程序控制，如果关闭，默认收到心跳消息不做回复
+
+nginx:
+  host: 180.76.134.142        # nginx 服务器地址
+  port: 80              # nginx 服务器端口
+  root_path: /root/nginx_server/photo/
+  height: 100             # 压缩图片高度，宽度等比例
+

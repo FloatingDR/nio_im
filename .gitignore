@@ -1,0 +1,4 @@
+# Project exclude paths
+/nio_core/target/
+/nio_server/target/
+/target/

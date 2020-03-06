@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+#    active: prod
+
+cache:
+  pre: NIO_IM     #缓存前缀
+  sp: ':'         #缓存分隔符
+
+dictionary:
+  zodiac: zodiac  #生肖
+  constellation: constellation   #星座
+
