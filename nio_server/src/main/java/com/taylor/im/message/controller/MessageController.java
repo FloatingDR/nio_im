@@ -1,6 +1,10 @@
 package com.taylor.im.message.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.taylor.im.message.entity.po.MessagePo;
 import com.taylor.im.message.service.IMessageService;
 import com.taylor.im.response.HttpResult;
@@ -84,7 +88,7 @@ public class MessageController {
      */
     @PutMapping("read_batch")
     @ApiOperation(value = "标记ids为已读消息", notes = "标记ids为已读消息")
-    public HttpResult<Boolean> deleteById(@ApiParam("消息ids") @RequestBody List<Long> ids) {
+    public HttpResult<Boolean> readBatch(@ApiParam("消息ids") @RequestBody List<Long> ids) {
         List<MessagePo> messagePos = ids.stream()
                 .map(id -> {
                     MessagePo messagePo = new MessagePo();
@@ -94,5 +98,27 @@ public class MessageController {
                 }).collect(Collectors.toList());
         return HttpResult.success(messageService.updateBatchById(messagePos), "已读");
     }
+
+    /**
+     * <p>
+     * 标记sendId/type的消息已读
+     * </p>
+     *
+     * @param sendId userId
+     * @return {@link HttpResult<Boolean> }
+     * @author taylor
+     * @date 2020/2/23 15:07
+     */
+//    @PutMapping("read_batch_by_sendIdAndType/{sendId}/{type}")
+//    @ApiOperation(value = "标记userId/type的消息已读", notes = "标记userId/type的消息已读")
+//    public HttpResult<Boolean> readByUserId(@PathVariable @ApiParam("用户id") Long sendId, @PathVariable @ApiParam("用户id") String type) {
+//        MessagePo messagePo = new MessagePo();
+//        messagePo.setSigned(true);
+//        LambdaUpdateWrapper<MessagePo> condition = new UpdateWrapper<MessagePo>()
+//                .lambda()
+//                .eq(MessagePo::getSendId, sendId)
+//                .eq(MessagePo::getType, type);
+//        return HttpResult.success(messageService.update(messagePo, condition), "已读");
+//    }
 
 }

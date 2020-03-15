@@ -5,6 +5,7 @@ import com.taylor.im.user.entity.po.UserPo;
 import com.taylor.im.user.service.ILoginService;
 import com.taylor.im.user.service.IUserService;
 import com.taylor.im.util.DateUtil;
+import io.swagger.models.auth.In;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,16 @@ public class RamdomTest {
 
     @Test
     public void test3() {
+        List<Integer> target = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
 
+        for (Integer i : list) {
+            // 存在
+            if (target.indexOf(i) >= 0) {
+                continue;
+            }
+            target.add(i);
+        }
     }
 
 }

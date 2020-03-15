@@ -45,7 +45,7 @@ public class WSServerController {
      * 重启netty服务
      */
     @GetMapping("/restart")
-    @ApiOperation(value = "重启netty服务", notes = "重启netty服务,监听默认端口,端口在此期间又可能被占用而无法重启")
+    @ApiOperation(value = "重启netty服务", notes = "重启netty服务,监听默认端口,端口在此期间有可能被占用而无法重启")
     public void restart() {
         wsServerService.restart();
     }

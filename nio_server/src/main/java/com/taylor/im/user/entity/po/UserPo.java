@@ -86,4 +86,7 @@ public class UserPo implements Serializable {
     @ApiModelProperty(value = "用户图片地址（原图）", example = "http://xxx.com/img/23.jpg")
     private String img;
 
+    @ApiModelProperty(value = "用户背景图片地址", example = "http://xxx.com/img/23.jpg")
+    private String backgroundImg;
+
 }

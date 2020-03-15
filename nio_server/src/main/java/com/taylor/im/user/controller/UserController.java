@@ -24,6 +24,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 /**
  * <p>
  * 用户相关 前端控制器
@@ -162,6 +164,8 @@ public class UserController {
     public HttpResult<UserDto> updateUserInfo(@PathVariable @ApiParam("用户id") Long id,
                                               @RequestBody @ApiParam("用户更新信息") EditBo bo) {
         UserBo userBo = new UserBo();
+        // 如果性别不为空，转换并更改性别
+        Optional.ofNullable(bo.getGender()).ifPresent(g -> userBo.setGender("男".equals(g)));
         BeanUtils.copyProperties(bo, userBo);
         UserPo po = userService.bo2po(userBo);
         po.setUserId(id);

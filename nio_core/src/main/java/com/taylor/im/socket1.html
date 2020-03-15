@@ -18,7 +18,7 @@
 
             let data = JSON.parse(event.data);
             if (data.header.msgType === "PANG") {
-                setTimeout(sendPing, 2000);
+                setTimeout(sendPing, 20000);
             } else {
                 ta.value = "";
                 ta.value = event.data;
@@ -46,7 +46,7 @@
         if (!window.WebSocket) {
             return;
         }
-        if (socket.readyState == WebSocket.OPEN) {
+        if (socket.readyState === WebSocket.OPEN) {
             socket.send(message);
         } else {
             alert("WebSocket 连接没有建立成功！");
@@ -62,7 +62,7 @@
             },
             data: "PING",
             sendTime: new Date(),
-            sendId: 35207453291,
+            sendId: 3444614016,
             crcCode: 0xEF6ED,
         };
         send(JSON.stringify(ping));
@@ -76,7 +76,7 @@
                 priority: 0
             },
             data: "LOGIN",
-            sendId: 35207453291
+            sendId: 3444614016
         };
         send(JSON.stringify(login));
     }
@@ -88,9 +88,9 @@
                 msgType: "CHAT",
                 priority: 0
             },
-            data: "hello",
+            data: "I LOVE YOU",
             sendTime: new Date(),
-            sendId: 35207453291,
+            sendId: 3444614016,
             receiverId: 3520745329,
             signed: false
         };

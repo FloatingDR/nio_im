@@ -1,10 +1,18 @@
 package com.taylor.im.dictionary.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.taylor.im.dictionary.service.IDictionaryService;
+import com.taylor.im.response.HttpResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Map;
 
 /**
  * <p>
@@ -15,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-02-18
  */
 @RestController
-@RequestMapping("/dictionary/dictionary-po")
+@RequestMapping("/dictionary")
 @CrossOrigin
 public class DictionaryController {
 

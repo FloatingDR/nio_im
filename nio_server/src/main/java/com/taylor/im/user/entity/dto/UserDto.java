@@ -43,12 +43,6 @@ public class UserDto implements Serializable{
     @ApiModelProperty(value = "性别 1:男性 0:女性")
     private String gender;
 
-    @ApiModelProperty(value = "身份证号")
-    private String identityId;
-
-    @ApiModelProperty(value = "电话号码")
-    private String telephone;
-
     @ApiModelProperty(value = "个性签名")
     private String signature;
 
@@ -75,5 +69,8 @@ public class UserDto implements Serializable{
 
     @ApiModelProperty(value = "用户图片地址（原图）", example = "http://xxx.com/img/23.jpg")
     private String img;
+
+    @ApiModelProperty(value = "用户背景图片地址", example = "http://xxx.com/img/23.jpg")
+    private String backgroundImg;
 
 }

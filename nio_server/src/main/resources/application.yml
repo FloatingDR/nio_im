@@ -3,8 +3,12 @@ server:
 
 spring:
   profiles:
-#    active: dev
-    active: prod
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+#    active: prod
 
 cache:
   pre: NIO_IM     #缓存前缀
@@ -13,4 +17,5 @@ cache:
 dictionary:
   zodiac: zodiac  #生肖
   constellation: constellation   #星座
+
 

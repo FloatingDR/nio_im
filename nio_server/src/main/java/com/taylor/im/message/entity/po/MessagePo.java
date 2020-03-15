@@ -19,7 +19,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("message")
-@ApiModel(value="MessagePo对象", description="消息表")
+@ApiModel(value = "MessagePo对象", description = "消息表")
 public class MessagePo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,6 +30,12 @@ public class MessagePo implements Serializable {
 
     @ApiModelProperty(value = "消息属于者，如果为负数，表示该消息属于多用户，具体用户由服务端自己来根据data解析")
     private Long userId;
+
+    @ApiModelProperty(value = "消息发送者")
+    private Long sendId;
+
+    @ApiModelProperty(value = "消息类型")
+    private String type;
 
     @ApiModelProperty(value = "消息内容，JSON格式")
     private String data;

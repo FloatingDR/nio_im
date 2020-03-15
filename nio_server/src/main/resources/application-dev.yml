@@ -54,9 +54,9 @@ swagger:
 netty:
   auto_start: true        #  netty是否随服务自动启动，程序控制
   port: 8081              #  netty默认监听端口
-  reader_idle: 7          #  客户端读空闲 7s
-  writer_idle: 7          #  客户端写空闲 7s
-  all_idle: 10            #  客户端读写空闲 10s
+  reader_idle: 30          #  客户端读空闲 30s
+  writer_idle: 30          #  客户端写空闲 30s
+  all_idle: 30            #  客户端读写空闲 30s
   open_heart: false        #  是否开启心跳检测机制，程序控制，如果关闭，默认收到心跳消息不做回复
 
 nginx:

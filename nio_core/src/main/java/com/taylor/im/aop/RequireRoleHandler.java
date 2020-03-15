@@ -35,9 +35,6 @@ public class RequireRoleHandler {
 
     private final AbstractRoleHandler roleHandler;
 
-    /**
-     * 处理注解在方法上的注解
-     */
     @Autowired
     public RequireRoleHandler(AbstractRoleHandler roleHandler) {
         this.roleHandler = roleHandler;

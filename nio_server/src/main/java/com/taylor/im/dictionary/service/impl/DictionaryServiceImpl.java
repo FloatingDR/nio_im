@@ -33,6 +33,15 @@ public class DictionaryServiceImpl extends ServiceImpl<DictionaryDao, Dictionary
     private String constellation;
 
     /**
+     * Constructor(构造方法) -> @Autowired(依赖注入) -> @PostConstruct(注释的方法)
+     */
+    @PostConstruct
+    private void cache() {
+        mapByCode(zodiac);
+        mapByCode(constellation);
+    }
+
+    /**
      * 缓存 Map<code, Map<value, name>>
      */
     final private static Map<String, Map<Integer, String>> CACHE = new HashMap<>();
@@ -52,15 +61,6 @@ public class DictionaryServiceImpl extends ServiceImpl<DictionaryDao, Dictionary
                 .collect(Collectors.toMap(DictionaryPo::getName, DictionaryPo::getValue));
         CACHE.put(code, map);
         EN_CACHE.put(code, enMap);
-    }
-
-    /**
-     * Constructor(构造方法) -> @Autowired(依赖注入) -> @PostConstruct(注释的方法)
-     */
-    @PostConstruct
-    private void cache() {
-        mapByCode(zodiac);
-        mapByCode(constellation);
     }
 
     @Override
