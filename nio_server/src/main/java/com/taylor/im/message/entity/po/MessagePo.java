@@ -3,11 +3,14 @@ package com.taylor.im.message.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -20,6 +23,7 @@ import java.io.Serializable;
 @Data
 @TableName("message")
 @ApiModel(value = "MessagePo对象", description = "消息表")
+@Builder
 public class MessagePo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +46,10 @@ public class MessagePo implements Serializable {
 
     @ApiModelProperty(value = "消息是否签收 1：签收 0：未签收")
     private Boolean signed;
+
+    @ApiModelProperty(value = "发送时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    protected LocalDateTime sendTime;
 
 
 }

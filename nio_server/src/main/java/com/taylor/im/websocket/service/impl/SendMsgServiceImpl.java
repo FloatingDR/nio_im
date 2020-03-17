@@ -59,10 +59,13 @@ public class SendMsgServiceImpl implements ISendMsgService {
     @Override
     public void sendToUserAndSave(Long userId, BaseMessage data) {
         String send = JSON.toJSONString(data);
-        MessagePo messagePo = new MessagePo();
-        messagePo.setUserId(userId);
-        messagePo.setData(send);
-
+        MessagePo messagePo = MessagePo.builder()
+                .userId(userId)
+                .sendId(data.getSendId())
+                .data(send)
+                .type(data.getHeader().getMsgType().type())
+                .sendTime(data.getSendTime())
+                .build();
         // 持久化
         msgService.saveMessage(messagePo);
         data.getHeader().setId(messagePo.getId());

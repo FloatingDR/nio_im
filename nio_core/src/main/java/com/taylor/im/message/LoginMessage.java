@@ -19,11 +19,6 @@ import lombok.EqualsAndHashCode;
 public class LoginMessage extends BaseMessage {
 
     private static final long serialVersionUID = 6124567989452469500L;
-    /**
-     * 发送者id
-     */
-    @ApiModelProperty(value = "发送者id")
-    private Long sendId;
 
     public LoginMessage() {
         this.setSendId(0L);

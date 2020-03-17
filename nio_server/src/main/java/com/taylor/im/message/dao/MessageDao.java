@@ -21,7 +21,7 @@ import java.util.List;
  */
 public interface MessageDao extends BaseMapper<MessagePo> {
 
-    String COLUMNS = "id, user_id, data, signed";
+    String COLUMNS = "id, user_id,send_id,type, data, signed,send_time";
 
     /**
      * <p>
@@ -32,7 +32,7 @@ public interface MessageDao extends BaseMapper<MessagePo> {
      * @author taylor
      * @date 2020/2/23 13:16
      */
-    @Insert("INSERT INTO message(user_id,data) VALUES (#{userId},#{data})")
+    @Insert("INSERT INTO message(user_id,send_id,data,type,send_time) VALUES (#{userId},#{sendId},#{data},#{type},#{sendTime})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void saveMessage(MessagePo messagePo);
 

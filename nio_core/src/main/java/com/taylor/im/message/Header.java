@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * 消息头
@@ -14,7 +16,10 @@ import lombok.Data;
  */
 @Data
 @ApiModel(value="消息头")
-public class Header {
+public class Header implements Serializable {
+
+    private static final long serialVersionUID = 4468375896901219680L;
+
     /**
      * 消息id,如果id<0,表示该消息不需要持久化
      */
