@@ -1,6 +1,8 @@
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.taylor.im.NioImApplication;
+import com.taylor.im.message.entity.po.MessagePo;
+import com.taylor.im.message.service.IMessageService;
 import com.taylor.im.user.entity.po.UserPo;
 import com.taylor.im.user.service.ILoginService;
 import com.taylor.im.user.service.IUserService;
@@ -15,9 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = NioImApplication.class)
@@ -27,6 +29,8 @@ public class RamdomTest {
     private IUserService userService;
     @Autowired
     private ILoginService loginService;
+    @Autowired
+    private IMessageService messageService;
 
     @Test
     public void ramdon() {
@@ -66,18 +70,62 @@ public class RamdomTest {
         System.out.println(userService.list(new QueryWrapper<>(userPo)));
     }
 
-    @Test
-    public void test3() {
-        List<Integer> target = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
 
-        for (Integer i : list) {
-            // 存在
-            if (target.indexOf(i) >= 0) {
-                continue;
-            }
-            target.add(i);
-        }
+    @Test
+    public void test4() {
+        Long userId = 3520745329L;
+        Long sendId = 3444614016L;
+        String type = "CHAT";
+        List<MessagePo> unreadList = messageService.searchUserUnread(userId);
+
+        List<Long> sendIds = unreadList.stream().map(MessagePo::getSendId).distinct().collect(Collectors.toList());
+        List<String> types = unreadList.stream().map(MessagePo::getType).distinct().collect(Collectors.toList());
+        System.out.println(sendIds);
+        System.out.println(types);
+
+        // 根据 userId 、sendId、type分组
+        List<MessagePo> collect = unreadList.stream()
+                .filter(messagePo -> messagePo.getSendId().equals(sendId)
+                        && messagePo.getType().equals(type))
+                .sorted(Comparator.comparing(MessagePo::getId).reversed())
+                .collect(Collectors.toList());
+        MessagePo max = collect.get(0);
+        System.out.println(max);
+        System.out.println(collect);
+
+        // 得到每个组 id 最大的元素 （按id从大到小排序取第一个）
+        // 聚合每个组的元素个数
+
+        //
+        Map<MessagePo, Long> result = new HashMap<>();
+        Map<String, Long> countMap = unreadList.stream()
+                .collect(Collectors.groupingBy(messagePo ->
+                        messagePo.getSendId() + "_" + messagePo.getType(), Collectors.counting()));
+        System.out.println(countMap);
+
+        countMap.keySet().forEach(key -> {
+            String[] s = key.split("_");
+            Long send_id = Long.valueOf(s[0]);
+            String s_type = s[1];
+            MessagePo max1 = getMax(unreadList, send_id, s_type);
+            result.put(max1,countMap.get(key));
+        });
+        System.out.println(result);
+
     }
+
+
+    /**
+     * 获取符合条件的数据中最近的一条数据
+     */
+    public MessagePo getMax(List<MessagePo> unreadList, Long sendId, String type) {
+        List<MessagePo> collect = unreadList.stream()
+                .filter(messagePo -> messagePo.getSendId().equals(sendId)
+                        && messagePo.getType().equals(type))
+                .sorted(Comparator.comparing(MessagePo::getId).reversed())
+                .collect(Collectors.toList());
+        return collect.get(0);
+    }
+
 
 }

@@ -29,12 +29,6 @@ public class HeartMessage extends BaseMessage {
     private static final int CRC_CODE = 0xEF6ED;
 
     /**
-     * 发送者id,服务器为0L
-     */
-    @ApiModelProperty(value = "发送者id")
-    private Long sendId;
-
-    /**
      * 心跳包校验码
      */
     @ApiModelProperty(value = "心跳包校验码")
@@ -51,7 +45,7 @@ public class HeartMessage extends BaseMessage {
      * 构造pang返回消息
      */
     public HeartMessage() {
-        this.sendId = 0L;
+        this.setSendId(0L);
         this.crcCode = 0xEF6ED;
         this.data = "PANG";
         this.sendTime = LocalDateTime.now();

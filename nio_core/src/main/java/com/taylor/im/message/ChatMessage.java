@@ -21,12 +21,6 @@ public class ChatMessage extends BaseMessage {
     private static final long serialVersionUID = 6124567989452469500L;
 
     /**
-     * 发送者id
-     */
-    @ApiModelProperty(value = "发送者id")
-    private Long sendId;
-
-    /**
      * 接收者id
      */
     @ApiModelProperty(value = "接收者id")

@@ -39,8 +39,15 @@ public class LoginStrategy implements BaseStrategy {
         LoginMessage message = JSON.parseObject(msg.text(), LoginMessage.class);
         Long sendId = message.getSendId();
         LoginMessage loginMessage = new LoginMessage();
-        // 登录时就将未读消息推送给客户端
-        loginMessage.setData(msgService.searchUserUnread(sendId));
+
+        /*
+         *    +----------------------------------------------------------------+
+         *    ｜  登录时就将未读消息推送给客户 端                                  ｜
+         *    ｜  loginMessage.setData(msgService.searchUserUnread(sendId))    ｜
+         *    ｜  更改：由于前端解析该消息比较复杂，由前端访问接口访问未读消息列表     ｜
+         *    +----------------------------------------------------------------+
+         */
+
         sendMsgService.sendToChannelAndMap(ctx, loginMessage, sendId);
     }
 }

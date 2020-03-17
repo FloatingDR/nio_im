@@ -21,12 +21,6 @@ public class GroupMessage extends BaseMessage{
     private static final long serialVersionUID = -2462154270406876423L;
 
     /**
-     * 消息发送者id
-     */
-    @ApiModelProperty(value = "消息发送者id")
-    private Long sendId;
-
-    /**
      * 群 id
      */
     @ApiModelProperty(value = "群 id")
