@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.taylor.im.user.entity.po.UserPo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 

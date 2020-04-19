@@ -98,12 +98,19 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserPo> implements IUs
         Optional.ofNullable(userPo).ifPresent(po -> {
             BeanUtils.copyProperties(po, dto);
             // 转换性别
-            String gender = po.getGender() ? "男" : "女";
-            dto.setGender(gender);
+            if (po.getGender() != null) {
+                String gender = po.getGender() ? "男" : "女";
+                dto.setGender(gender);
+            }
             // 转换生肖
-            dto.setZodiac(dictionaryService.getByCode(ZODIAC).get(po.getZodiac()));
+            if (po.getZodiac() != null) {
+                dto.setZodiac(dictionaryService.getByCode(ZODIAC).get(po.getZodiac()));
+            }
             // 转换星座
-            dto.setConstellation(dictionaryService.getByCode(CONSTELLATION).get(po.getConstellation()));
+            if (po.getConstellation() != null) {
+                dto.setConstellation(dictionaryService.getByCode(CONSTELLATION).get(po.getConstellation()));
+            }
+
         });
         return dto;
     }
