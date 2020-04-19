@@ -30,6 +30,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageDao, MessagePo> imple
     public List<MessagePo> searchUserUnread(Long userId) {
         LambdaQueryWrapper<MessagePo> q = new QueryWrapper<MessagePo>()
                 .lambda()
+                .eq(MessagePo::getType, "CHAT")
                 .eq(MessagePo::getUserId, userId)
                 .eq(MessagePo::getSigned, false);
         return baseMapper.searchUserUnread(q);
