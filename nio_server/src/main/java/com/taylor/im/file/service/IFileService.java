@@ -50,7 +50,7 @@ public interface IFileService {
      * @param file   file
      * @return {@link HeaderImg }
      * @throws Exception 异常
-     * @author 史金涛@3520745329
+     * @author taylor
      * @date 2020/3/1 16:45
      */
     HeaderImg uploadHeaderImg(Long userId, MultipartFile file) throws Exception;

@@ -74,7 +74,7 @@ public class WSServerHandler extends SimpleChannelInboundHandler<Object> {
      *
      * @param ctx   ctx
      * @param frame websocket frame
-     * @author 史金涛@3520745329
+     * @author taylor
      * @date 2020/2/22 11:18
      */
     private void handleWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
@@ -139,7 +139,7 @@ public class WSServerHandler extends SimpleChannelInboundHandler<Object> {
      * @param ctx ctx
      * @param req req
      * @param res res
-     * @author 史金涛@3520745329
+     * @author taylor
      * @date 2020/2/22 11:43
      */
     private void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, FullHttpResponse res) {

@@ -80,7 +80,7 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleDao, UserRolePo> im
      *
      * @param userId userId
      * @return {@link UserRolePo }
-     * @author 史金涛@3520745329
+     * @author taylor
      * @date 2020/3/3 17:19
      */
     UserRolePo getByUserId(Long userId) {
