@@ -24,7 +24,7 @@ public interface IGroupService extends IService<GroupPo> {
      *
      * @param bo bo
      * @return {@link GroupDto }
-     * @author 史金涛@3520745329
+     * @author taylor
      * @date 2020/3/1 18:41
      */
     GroupDto creatGroup(CreatBo bo);
@@ -37,7 +37,7 @@ public interface IGroupService extends IService<GroupPo> {
      *
      * @param groupId groupId
      * @return {@link GroupDto }
-     * @author 史金涛@3520745329
+     * @author taylor
      * @date 2020/3/1 18:41
      */
     GroupDto getGroupById(Long groupId);
