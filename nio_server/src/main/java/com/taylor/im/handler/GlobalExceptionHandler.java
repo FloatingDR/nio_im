@@ -32,4 +32,9 @@ public class GlobalExceptionHandler {
         return HttpResult.error(String.format("文件大小超过限制:%s", maxFileSize));
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public HttpResult<Object> illegalArgumentExceptionHandeler(Exception e) {
+        return HttpResult.error("输入格式错误:%s", e.getMessage());
+    }
+
 }
