@@ -27,6 +27,8 @@ public class MsgContextProcessor implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         Map<String, Object> map = applicationContext.getBeansWithAnnotation(HandlerMsg.class);
         map.forEach((k, v) -> {
+            /* 含有 HandlerMsg 注解的类一定是 BaseStrategy 类型的，所以此处类型安全 */
+            @SuppressWarnings("unchecked")
             Class<BaseStrategy> strategyClass = (Class<BaseStrategy>) v.getClass();
             String value = strategyClass.getAnnotation(HandlerMsg.class).value();
             // 将class加入map中，value作为key
