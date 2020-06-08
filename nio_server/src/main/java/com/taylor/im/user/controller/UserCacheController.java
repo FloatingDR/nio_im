@@ -195,11 +195,13 @@ public class UserCacheController {
     private <T> List<T> getListFromCache(String key) {
         // 缓存中的列表
         List<T> cache = new ArrayList<>();
-        // NOP
+        // NPE
         Optional.ofNullable(jdkTemplate.boundListOps(key).size())
                 .ifPresent(size -> {
                     for (long i = 0; i < size; i++) {
-                        cache.add((T) jdkTemplate.boundListOps(key).index(i));
+                        @SuppressWarnings("unchecked")
+                        T index = (T) jdkTemplate.boundListOps(key).index(i);
+                        cache.add(index);
                     }
                 });
         return cache;
